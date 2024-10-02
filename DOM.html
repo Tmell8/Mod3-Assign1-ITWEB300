@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+  <script src='main.js'></script>
+</head>
+<body>
+  <p id="welcomeMessage" style="display: none;"></p>
+
+  <script>
+    function displayWelcomeMessage(userName){
+      var welcomeMessage = document.getElementById("welcomeMessage");
+      welcomeMessage.textContent ="Hello, " + userName + "!";
+      welcomeMessage.style.display = "block";
+    }
+  </script>
+
+  <p id="errorMessage" style="color:red;"></p>
+  <input type="text" id="userID">
+  <input type="password" id="password">
+  <button onclick="validationLogin()">Login</button>
+
+  <script>
+    function validateLogin(){
+      var userIde = document.getElementById("userID").value;
+      var password = document.getElementById("password").value;
+
+      if(UserID === "" || password  === ""){
+        var errorMessage = document.getElementById("errorMessage");
+        errorMessage.textContent = "Invalid login. Please try again.";
+        document.getElementById("userID").value = "";
+        document.getElementById("password").value = "";
+      }
+    }
+  </script>
+
+<select id="ticketType" onchange="displayFormFields()">
+  <option value="">Select Ticket Type</option>
+  <option value="computer">Computer</option>
+  <option value="software">Software</option>
+  <option value="network">Network</option>
+</select>
+
+<div id="computerFields" style="display: none;">
+  <label for="computerModel">Computer Model:</label>
+  <input type="text" id="computerModel">
+</div>
+
+<div id="softwareFields" style="display: none;">
+  <label for="softwareName">Software Name:</label>
+  <input type="text" id="softwareName">
+</div>
+
+<div id="networkFields" style="display: none;">
+  <label for="networkIssue">Network Issue:</label>
+  <input type="text" id="networkIssue">
+</div>
+
+<script>
+  function displayFormFields() {
+    var ticketType = document.getElementById("ticketType").value;
+    
+    // Hide all fields initially
+    document.getElementById("computerFields").style.display = "none";
+    document.getElementById("softwareFields").style.display = "none";
+    document.getElementById("networkFields").style.display = "none";
+
+    // Show specific fields based on selection
+    if (ticketType === "computer") {
+        document.getElementById("computerFields").style.display = "block";
+    } else if (ticketType === "software") {
+        document.getElementById("softwareFields").style.display = "block";
+    } else if (ticketType === "network") {
+        document.getElementById("networkFields").style.display = "block";
+    }
+}
+
+</script>
+
+<input type="text" id="userName" placeholder="Your Name">
+<input type="text" id="userEmail" placeholder="Your Email">
+<button onclick="highlightEmptyFields()">Submit</button>
+
+
+<script>
+  function highlightEmptyFields() {
+    var userName = document.getElementById("userName");
+    var userEmail = document.getElementById("userEmail");
+
+    // Reset field colors
+    userName.style.border = "";
+    userEmail.style.border = "";
+
+    if (userName.value === "") {
+        userName.style.border = "2px solid red";
+    }
+    if (userEmail.value === "") {
+        userEmail.style.border = "2px solid red";
+    }
+}
+
+</script>
+</body>
+</html>
